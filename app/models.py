@@ -59,7 +59,7 @@ class Achievement(models.Model):
 
 
 class FAQ(models.Model):
-    question = models.CharField(max_length=255)
+    question = models.TextField(max_length=255)
     answer = models.TextField()
 
 
