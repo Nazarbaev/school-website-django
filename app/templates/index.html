@@ -5,33 +5,32 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+      <a href="{% url 'index' %}" class="logo d-flex align-items-center me-auto me-xl-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         
-        <img  class = "sitename" src="assets/img/cloud.jpeg" alt="logo">
+        <img  class = "sitename" src="{% static 'assets/img/cloud.jpeg' %}" alt="logo">
       </a>
 
       <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="index.html#hero" class="active">Главная</a></li>
-          <li><a href="index.html#about">О Нас</a></li>
+          <li><a href="{% url 'index' %}#hero" class="active">Главная</a></li>
+          <li><a href="{% url 'index' %}#about">О Нас</a></li>
           
-          <li><a href="index.html#services">Кружки</a></li>
+          <li><a href="{% url 'index' %}#services">Кружки</a></li>
           
-          <li><a href="gallery.html">Галерея</a></li>
-          <li><a href="index.html#team">Команда</a></li>
-          <li><a href="blog.html">Блог</a></li>
+          <li><a href="{% url 'gallery' %}">Галерея</a></li>
+          <li><a href="{% url 'index' %}#team">Команда</a></li>
+          <li><a href="{% url 'blog' %}">Блог</a></li>
           <li class="dropdown"><a href=""><span>Образование</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="edupage.html">Edupage</a></li>
+              <li><a href="{% url 'edupage' %}">Edupage</a></li>
               <li><a href="#">Cambridge</a></li>
               
-              <li><a href="achievements.html">Достижения</a></li>
-              <li><a href="FAQ.html">Часто задаваемые <br> вопросы</a></li>
+              <li><a href="{% url 'achievements' %}">Достижения</a></li>
+              <li><a href="{% url 'faq' %}">Часто задаваемые <br> вопросы</a></li>
             </ul>
           </li>
-          <li><a href="index.html#contact">Контакты</a></li>
+          <li><a href="{% url 'index' %}#contact">Контакты</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -49,13 +48,13 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
 
-      <img src="assets/img/Stem1.png" alt="" data-aos="fade-in">
+      <img src="{% static 'assets/img/Stem1.png' %}" alt="" data-aos="fade-in">
 
       <div class="container">
         <div class="row">
           <div class="col-lg-10">
             <h2 data-aos="fade-up" data-aos-delay="100">Наша миссия</h2>
-            <p data-aos="fade-up" data-aos-delay="200">В школе «Сейтек-СТЕМ» мы стремимся не только к высокому уровню академических знаний, но и к воспитанию нравственных и ответственных личностей, готовых к активному участию в жизни общества  </p>
+            <p data-aos="fade-up" data-aos-delay="200">В школе «Сейтек-СТЕМ» мы стремимся не только к высокому уровню академических знаний, но и к воспитанию нравственных и ответственных личностей, готовых к активному участию в жизни общества.  </p>
           </div>
          
         </div>
@@ -69,29 +68,29 @@
       <div class="container" data-aos="fade-up">
 
         <div class="row gy-4">
-
+' %}
           <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="assets/img/clients/images.png" class="img-fluid" alt="">
+            <img src="{% static 'assets/img/clients/images.png' %}" class="img-fluid" alt="">
           </div><!-- End Client Item -->
 
           <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="assets/img/clients/iwise-logo.png" class="img-fluid" alt="">
+            <img src="{% static 'assets/img/clients/iwise-logo.png' %}" class="img-fluid" alt="">
           </div><!-- End Client Item -->
 
           <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="assets/img/clients/inespo.png" class="img-fluid" alt="">
+            <img src="{% static 'assets/img/clients/inespo.png' %}" class="img-fluid" alt="">
           </div><!-- End Client Item -->
 
           <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="assets/img/clients/owlypia.png" class="img-fluid" alt="">
+            <img src="{% static 'assets/img/clients/owlypia.png' %}" class="img-fluid" alt="">
           </div><!-- End Client Item -->
 
           <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="assets/img/clients/oscar.png" class="img-fluid" alt="">
+            <img src="{% static 'assets/img/clients/oscar.png' %}" class="img-fluid" alt="">
           </div><!-- End Client Item -->
 
           <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="assets/img/clients/stem.png" class="img-fluid" alt="">
+            <img src="{% static 'assets/img/clients/stem.png' %}" class="img-fluid" alt="">
           </div><!-- End Client Item -->
 
         </div>
@@ -159,7 +158,7 @@
     <!-- Stats Section -->
     <section id="stats" class="stats section dark-background">
 
-      <img src="assets/img/activity/kids1.jpg" alt="" data-aos="fade-in">
+      <img src="{% static 'assets/img/activity/kids1.jpg' %}" alt="" data-aos="fade-in">
 
       <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
 
@@ -214,7 +213,7 @@
 
           <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="100">
             <div class="service-item d-flex">
-              <div class="icon flex-shrink-0"><img src="assets/img/Кружки/football.png" alt="Football Icon" class="custom-icon"></div>
+              <div class="icon flex-shrink-0"><img src="{% static 'assets/img/Кружки/football.png' %}" alt="Football Icon" class="custom-icon"></div>
               <div>
                 <h4 class="title"><a  class="stretched-link">Футбол</a></h4>
                 <p class="description">Футбол – это не только спорт, но и командный дух, стратегия и развитие физических навыков</p>
@@ -225,7 +224,7 @@
 
           <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="200">
             <div class="service-item d-flex">
-              <div class="icon flex-shrink-0"><img src="assets/img/Кружки/conference.png" alt="Football Icon" class="custom-icon"></i></div>
+              <div class="icon flex-shrink-0"><img src="{% static 'assets/img/Кружки/conference.png' %}" alt="Football Icon" class="custom-icon"></i></div>
               <div>
                 <h4 class="title"><a  class="stretched-link">Ораторское мастерство</a></h4>
                 <p class="description">Кружок помогает детям развить уверенность в себе, научиться красиво и убедительно говорить, работать с аудиторией и преодолевать страх публичных выступлений.</p>
@@ -235,7 +234,7 @@
 
           <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="300">
             <div class="service-item d-flex">
-              <div class="icon flex-shrink-0"><img src="assets/img/Кружки/table-tennis.png" alt="Football Icon" class="custom-icon"></div>
+              <div class="icon flex-shrink-0"><img src="{% static 'assets/img/Кружки/table-tennis.png' %}" alt="Football Icon" class="custom-icon"></div>
               <div>
                 <h4 class="title"><a  class="stretched-link">Теннис</a></h4>
                 <p class="description">Теннис – это динамичный и энергичный спорт, который помогает развить ловкость, скорость реакции и выносливость.</p>
@@ -245,7 +244,7 @@
 
           <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="400">
             <div class="service-item d-flex">
-              <div class="icon flex-shrink-0"><img src="assets/img/Кружки/ui-design.png" alt="Football Icon" class="custom-icon"></i></div>
+              <div class="icon flex-shrink-0"><img src="{% static 'assets/img/Кружки/ui-design.png' %}" alt="Football Icon" class="custom-icon"></i></div>
               <div>
                 <h4 class="title"><a  class="stretched-link">Мобилография</a></h4>
                 <p class="description">Мобилография – это искусство создания качественных и креативных фото и видео с помощью смартфона.</p>
@@ -255,7 +254,7 @@
 
           <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="500">
             <div class="service-item d-flex">
-              <div class="icon flex-shrink-0"><img src="assets/img/Кружки/chess.png" alt="Football Icon" class="custom-icon"></i></div>
+              <div class="icon flex-shrink-0"><img src="{% static 'assets/img/Кружки/chess.png' %}" alt="Football Icon" class="custom-icon"></i></div>
               <div>
                 <h4 class="title"><a  class="stretched-link">Шахматы</a></h4>
                 <p class="description">Шахматы развивают стратегическое мышление, логику и концентрацию, также улучшает память</p>
@@ -265,7 +264,7 @@
 
           <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="600">
             <div class="service-item d-flex">
-              <div class="icon flex-shrink-0"><img src="assets/img/Кружки/athlete.png" alt="Football Icon" class="custom-icon"></i></div>
+              <div class="icon flex-shrink-0"><img src="{% static 'assets/img/Кружки/athlete.png' %}" alt="Football Icon" class="custom-icon"></i></div>
               <div>
                 <h4 class="title"><a  class="stretched-link">Хоккей на траве</a></h4>
                 <p class="description">Хоккей на траве – это динамичный и стратегический вид спорта, который развивает скорость, координацию и командное взаимодействие.</p>
@@ -295,19 +294,19 @@
             <h3>Преимущества Кембриджской системы обучения</h3>
             <p>
               Международное признание: Кембриджская программа признана во всем мире, что открывает нашим выпускникам двери ведущих университетов и карьерных возможностей  </p>
-            <a href="cambridge.html" class="btn btn-get-started">Подробнее</a>
+            <a href="{% url 'cambridge' %}" class="btn btn-get-started">Подробнее</a>
           </div>
           <div class="col-lg-7 order-1 order-lg-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
             <div class="image-stack">
-              <img src="assets/img/преимущества/cambridge.png" alt="" class="stack-front">
-              <img src="assets/img/преимущества/students.jpg" alt="" class="stack-back">
+              <img src="{% static 'assets/img/преимущества/cambridge.png' %}" alt="" class="stack-front">
+              <img src="{% static 'assets/img/преимущества/students.jpg' %}" alt="" class="stack-back">
             </div>
           </div>
         </div><!-- Features Item -->
 
         <div class="row gy-4 align-items-stretch justify-content-between features-item ">
           <div class="col-lg-6 d-flex align-items-center features-img-bg" data-aos="zoom-out">
-            <img src="assets/img/преимущества/edu.png" class="img-fluid" alt="">
+            <img src="{% static 'assets/img/преимущества/edu.png' %}" class="img-fluid" alt="">
           </div>
           <div class="col-lg-5 d-flex justify-content-center flex-column" data-aos="fade-up">
             <h3>Преимущества использования платформы EduPage</h3>
@@ -318,7 +317,7 @@
               <li><i class="bi bi-check"></i> <span>Обмен материалами</span></li>
               <li><i class="bi bi-check"></i> <span>Обратная связь</span></li>
             </ul>
-            <a href="edupage.html" class="btn btn-get-started align-self-start">Подробнее</a>
+            <a href="{% url 'edupage' %}" class="btn btn-get-started align-self-start">Подробнее</a>
           </div>
         </div><!-- Features Item -->
 
@@ -348,7 +347,7 @@
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="assets/img/football/2.jpg" class="img-fluid" alt="">
+              <img src="{% static 'assets/img/football/2.jpg' %}" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Спорт</h4>
           
@@ -357,7 +356,7 @@
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets/img/activity/2.jpg" class="img-fluid" alt="">
+              <img src="{% static 'assets/img/activity/2.jpg' %}" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Деятельности</h4>
               
@@ -367,7 +366,7 @@
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="assets/img/Study/1.jpg" class="img-fluid" alt="">
+              <img src="{% static 'assets/img/Study/1.jpg' %}" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Учеба</h4>
           
@@ -377,7 +376,7 @@
             </div><!-- End Portfolio Item -->
           </div><!-- End Portfolio Container -->
           <div class="d-flex justify-content-center mt-4">
-            <a href="gallery.html" class="btn btn-get-started" style="background-color: #F39501; color: #ffffff; border-color: #F39501;">
+            <a href="{% url 'gallery' %}" class="btn btn-get-started" style="background-color: #F39501; color: #ffffff; border-color: #F39501;">
               More
             </a>
           </div>
@@ -412,7 +411,7 @@
 
           <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
             <div class="member-img">
-              <img src="assets/img/team/1.JPG" class="img-fluid" alt="">
+              <img src="{% static 'assets/img/team/1.JPG' %}" class="img-fluid" alt="">
               
             </div>
             <div class="member-info text-center">
@@ -424,7 +423,7 @@
 
           <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="200">
             <div class="member-img">
-              <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
+              <img src="{% static 'assets/img/team/team-2.jpg' %}" class="img-fluid" alt="">
               
             </div>
             <div class="member-info text-center">
@@ -436,7 +435,7 @@
 
           <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="300">
             <div class="member-img">
-              <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
+              <img src="{% static 'assets/img/team/team-3.jpg' %}" class="img-fluid" alt="">
               
             </div>
             <div class="member-info text-center">
@@ -447,7 +446,7 @@
           </div><!-- End Team Member -->
           <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="600">
             <div class="member-img">
-              <img src="assets/img/team/team-6.jpg" class="img-fluid" alt="">
+              <img src="{% static 'assets/img/team/team-6.jpg' %}" class="img-fluid" alt="">
               
             </div>
             <div class="member-info text-center">
@@ -458,7 +457,7 @@
           </div><!-- End Team Member -->
           <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="400">
             <div class="member-img">
-              <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
+              <img src="{% static 'assets/img/team/team-4.jpg' %}" class="img-fluid" alt="">
               
             </div>
             <div class="member-info text-center">
@@ -470,7 +469,7 @@
 
           <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="500">
             <div class="member-img">
-              <img src="assets/img/team/team-5.jpg" class="img-fluid" alt="">
+              <img src="{% static 'assets/img/team/team-5.jpg' %}" class="img-fluid" alt="">
               
             </div>
             <div class="member-info text-center">
@@ -489,7 +488,7 @@
     <!-- Call To Action Section -->
     <section id="call-to-action" class="call-to-action section dark-background">
 
-      <img src="assets/img/social_media.jpg" alt="">
+      <img src="{% static 'assets/img/social_media.jpg' %}" alt="">
 
       <div class="container">
         <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
@@ -525,13 +524,13 @@
             <article>
 
               <div class="post-img">
-                <img src="assets/img/blog/achievement.jpeg" alt="" class="img-fluid">
+                <img src="{% static 'assets/img/blog/achievement.jpeg' %}" alt="" class="img-fluid">
               </div>
 
               <p class="post-category">Достижения</p>
 
               <h2 class="title">
-                <a href="blog-details.html">Золотая победа на олимпиаде JEO!</a>
+                <a href="{% url 'blog-details' %}">Золотая победа на олимпиаде JEO!</a>
               </h2>
 
               
@@ -543,13 +542,13 @@
             <article>
 
               <div class="post-img">
-                <img src="assets/img/blog/achievement-2.jpeg" alt="" class="img-fluid">
+                <img src="{% static 'assets/img/blog/achievement-2.jpeg' %}" alt="" class="img-fluid">
               </div>
 
               <p class="post-category">Деятельности</p>
 
               <h2 class="title">
-                <a href="blog-details.html">Конкурс по сбору макулатуры!</a>
+                <a href="{% url 'blog-details' %}">Конкурс по сбору макулатуры!</a>
               </h2>
 
               
@@ -561,13 +560,13 @@
             <article>
 
               <div class="post-img">
-                <img src="assets/img/blog/achievement-3.jpg" alt="" class="img-fluid">
+                <img src="{% static 'assets/img/blog/achievement-3.jpg' %}" alt="" class="img-fluid">
               </div>
 
               <p class="post-category">Достижения</p>
 
               <h2 class="title">
-                <a href="blog-details.html">Candidate for Accreditation from Character.org!</a>
+                <a href="{% url 'blog-details' %}">Candidate for Accreditation from Character.org!</a>
               </h2>
 
              
