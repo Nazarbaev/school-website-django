@@ -5,7 +5,7 @@ from django.utils import timezone
 class Home(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
-    image = models.ImageField()
+    image = models.ImageField(upload_to='images/')
 
     def __str__(self):
         return self.title
@@ -13,6 +13,10 @@ class Home(models.Model):
     class Meta:
         verbose_name = "Главная"
         verbose_name_plural = "Главная"
+
+    def __str__(self):
+        return f"Image {self.id}"
+
 
 
 class GalleryCategory(models.Model):
@@ -29,7 +33,7 @@ class GalleryCategory(models.Model):
 
 
 class Gallery(models.Model):
-    image = models.ImageField()
+    image = models.ImageField(upload_to='images/')
     category = models.ForeignKey(GalleryCategory, on_delete=models.CASCADE, related_name='gallery')
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
@@ -37,6 +41,9 @@ class Gallery(models.Model):
     class Meta:
         verbose_name = "Галерея"
         verbose_name_plural = "Галерея"
+
+    def __str__(self):
+        return f"Image {self.id}"
 
 
 class Stats(models.Model):
