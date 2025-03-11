@@ -1,5 +1,5 @@
+from django.conf import settings
 from django.conf.urls.static import static
-from stem import settings
 from django.urls import path
 from .views import (IndexView,
                     GalleryView,

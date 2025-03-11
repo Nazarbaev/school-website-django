@@ -1,48 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block header %}
-  <header id="header" class="header d-flex align-items-center sticky-top">
-    <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
-
-      <a href="{% url 'index' %}" class="logo d-flex align-items-center me-auto me-xl-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        
-        <img  class = "sitename" src="{% static 'assets/img/cloud.jpeg' %}" alt="logo">
-      </a>
-{% url '
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="{% url 'index' %}#hero" class="active">Главная</a></li>
-          <li><a href="{% url 'index' %}">О Нас</a></li>
-          
-          <li><a href="{% url 'index' %}#services">Кружки</a></li>
-          
-          <li><a href="{% url 'index' %}#gallery">Галерея</a></li>
-          <li><a href="{% url 'index' %}#team">Команда</a></li>
-          <li><a href="{% url 'blog' %}">Блог</a></li>
-          <li class="dropdown"><a href=""><span>Образование</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="{% url 'edupage' %}">Edupage</a></li>
-              <li><a href="{% url 'cambridge' %}">Cambridge</a></li>
-              
-              <li><a href="{% url 'achievements' %}">Достижения</a></li>
-              <li><a href="{% url 'faq' %}">Часто задаваемые <br> вопросы</a></li>
-            </ul>
-          </li>
-          <li><a href="{% url 'index' %}#contact">Контакты</a></li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
-
-      
-
-    </div>
-  </header>
-{% endblock header %}
-
-
 {% block body %}
   <main class="main">
 

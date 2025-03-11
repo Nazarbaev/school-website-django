@@ -1,12 +1,23 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
+
+from app.models import Home, Gallery, GalleryCategory
 
 
-class IndexView(TemplateView):
+class IndexView(ListView):
+    model = Home
     template_name = "index.html"
+    context_object_name = "home_list"
 
 
-class GalleryView(TemplateView):
+class GalleryView(ListView):
+    model = Gallery
     template_name = "gallery.html"
+    context_object_name = "gallery_images"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories"] = GalleryCategory.objects.all()
+        return context
 
 
 class StarterPageView(TemplateView):

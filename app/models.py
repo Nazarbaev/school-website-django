@@ -87,7 +87,7 @@ class BlogPost(models.Model):
     content = models.TextField()
     description = models.TextField()
     category = models.ForeignKey(BlogCategory, on_delete=models.SET_NULL, null=True, blank=True, related_name='posts')
-    image = models.ImageField()
+    image = models.ImageField(upload_to='images/')
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
     # project_url = models.TextField()
@@ -98,6 +98,9 @@ class BlogPost(models.Model):
     class Meta:
         verbose_name = "Новости"
         verbose_name_plural = "Новости"
+
+
+
 
 # class FAQ(models.Model):
 #     question = models.TextField(max_length=255)
