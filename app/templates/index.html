@@ -5,20 +5,21 @@
 <main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
-        {% for home in home_list %}
-        <img src="{{ home.image.url }}" alt="{{ home.title }}" data-aos="fade-in">
+   <section id="hero" class="hero section dark-background">
+  {% for home in home_list %}
+    <img src="{{ home.image.url }}" alt="{{ home.title }}" data-aos="fade-in">
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10">
-                    <h2 data-aos="fade-up" data-aos-delay="100">{{ home.title }}</h2>
-                    <p data-aos="fade-up" data-aos-delay="200">{{ home.content }}</p>
-                </div>
-            </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10">
+          <h2 data-aos="fade-up" data-aos-delay="100">{{ home.title }}</h2>
+          <p data-aos="fade-up" data-aos-delay="200">{{ home.content }}</p>
         </div>
-        {% endfor %}
-    </section>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
     <!-- /Hero Section -->
 
     <!-- Clients Section -->
@@ -120,51 +121,48 @@
     </section><!-- /About Section -->
 
     <!-- Stats Section -->
-    <section id="stats" class="stats section dark-background">
+   <section id="stats" class="stats section dark-background">
+    <img src="{% static 'assets/img/activity/kids1.jpg' %}" alt="" data-aos="fade-in">
 
-        <img src="{% static 'assets/img/activity/kids1.jpg' %}" alt="" data-aos="fade-in">
+    <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
 
-        <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="{{ stats.number_of_teachers }}" data-purecounter-duration="0.5"
+                          class="purecounter"></span>
+                    <p>Количестов Учителей</p>
+                </div>
+            </div>
 
-            <div class="row gy-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="{{ stats.number_of_clubs }}" data-purecounter-duration="0.5"
+                          class="purecounter"></span>
+                    <p>Количество Кружков</p>
+                </div>
+            </div>
 
-                <div class="col-lg-3 col-md-6">
-                    <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="52" data-purecounter-duration="1"
-                              class="purecounter"></span>
-                        <p>Teachers</p>
-                    </div>
-                </div><!-- End Stats Item -->
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="{{ stats.number_of_students }}" data-purecounter-duration="0.5"
+                          class="purecounter"></span>
+                    <p>Количество Учеников</p>
+                </div>
+            </div>
 
-                <div class="col-lg-3 col-md-6">
-                    <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
-                              class="purecounter"></span>
-                        <p>Number of Clubs</p>
-                    </div>
-                </div><!-- End Stats Item -->
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1"
-                              class="purecounter"></span>
-                        <p>Students</p>
-                    </div>
-                </div><!-- End Stats Item -->
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1"
-                              class="purecounter"></span>
-                        <p>Workers</p>
-                    </div>
-                </div><!-- End Stats Item -->
-
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="{{ stats.number_of_workers }}" data-purecounter-duration="0.5"
+                          class="purecounter"></span>
+                    <p>Площадь Школы  </p>
+                </div>
             </div>
 
         </div>
-
-    </section><!-- /Stats Section -->
+    </div>
+</section>
+<!-- /Stats Section -->
 
     <!-- Services Section -->
     <section id="services" class="services section">
@@ -320,10 +318,10 @@
     <section id="gallery" class="portfolio section">
         <div class="container">
 
-            <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+            <div class="isotope-layout" data-default-filter=".filter-main" data-layout="masonry" data-sort="original-order">
 
                 <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-                    <li data-filter="*" class="filter-active">Все</li>
+                    <li data-filter=".filter-main" class="filter-active">Все</li>
                     <li data-filter=".filter-app">Спорт</li>
                     <li data-filter=".filter-product">Деятельности</li>
                     <li data-filter=".filter-branding">Учеба</li>
@@ -331,43 +329,55 @@
 
                 <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                    <!-- Sport -->
+                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app filter-main">
                         <img src="{% static 'assets/img/football/2.jpg' %}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Спорт</h4>
 
-                            <a href="assets/img/football/2.jpg" title="Спорт" data-gallery="portfolio-gallery-app"
-                               class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                        </div>
-                    </div><!-- End Portfolio Item -->
+                    </div>
+                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                        <img src="{% static 'assets/img/football/3.jpg' %}" class="img-fluid" alt="">
 
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+                    </div>
+                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                        <img src="{% static 'assets/img/football/n.jpg' %}" class="img-fluid" alt="">
+
+                    </div>
+                    <!-- End Sport -->
+                    <!-- Activity -->
+                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product filter-main">
                         <img src="{% static 'assets/img/activity/2.jpg' %}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Деятельности</h4>
 
-                            <a href="assets/img/activity/2.jpg" title="Деятельности"
-                               data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
-                                    class="bi bi-zoom-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product ">
+                        <img src="{% static 'assets/img/activity/3.jpg' %}" class="img-fluid" alt="">
 
-                        </div>
-                    </div><!-- End Portfolio Item -->
+                    </div>
+                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product ">
+                        <img src="{% static 'assets/img/activity/4.jpg' %}" class="img-fluid" alt="">
 
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                    </div>
+                    <!-- End Activity -->
+                    <!-- Study -->
+                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding filter-main">
                         <img src="{% static 'assets/img/Study/1.jpg' %}" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Учеба</h4>
 
-                            <a href="assets/img/Study/1.jpg" title="Учеба" data-gallery="portfolio-gallery-branding"
-                               class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                    </div>
+                     <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                        <img src="{% static 'assets/img/Study/2.jpg' %}" class="img-fluid" alt="">
 
-                        </div>
-                    </div><!-- End Portfolio Item -->
-                </div><!-- End Portfolio Container -->
+                    </div>
+                     <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                        <img src="{% static 'assets/img/Study/3.jpg' %}" class="img-fluid" alt="">
+
+                    </div>
+                    <!-- End Study -->
+
+
+                </div>
                 <div class="d-flex justify-content-center mt-4">
                     <a href="{% url 'gallery' %}" class="btn btn-get-started"
                        style="background-color: #F39501; color: #ffffff; border-color: #F39501;">
-                        More
+                        Подробнее
                     </a>
                 </div>
             </div>
@@ -385,100 +395,31 @@
     </section><!-- /Pricing Section -->
 
 
-    <!-- Team Section -->
+    <!--   Section -->
     <section id="team" class="team section light-background">
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Наша команда</h2>
+    <p>Работаем вместе, чтобы создавать комфортную, эффективную и мотивирующую среду для обучения.</p>
+  </div>
 
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Наша команда</h2>
-            <p>Работаем вместе, чтобы создавать комфортную, эффективную и мотивирующую среду для обучения.</p>
-        </div><!-- End Section Title -->
-
-        <div class="container">
-
-            <div class="row gy-5">
-
-                <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
-                    <div class="member-img">
-                        <img src="{% static 'assets/img/team/1.JPG' %}" class="img-fluid" alt="">
-
-                    </div>
-                    <div class="member-info text-center">
-                        <h4>Сатывалдыев Рустам</h4>
-                        <span>Старший преподаватель</span>
-                        <p>Руководит стратегическим развитием, обеспечивает высокие стандарты образования и вдохновляет
-                            команду на новые достижения.</p>
-                    </div>
-                </div><!-- End Team Member -->
-
-                <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="200">
-                    <div class="member-img">
-                        <img src="{% static 'assets/img/team/team-2.jpg' %}" class="img-fluid" alt="">
-
-                    </div>
-                    <div class="member-info text-center">
-                        <h4>Сатывалдыев Дуйшон</h4>
-                        <span>Старший преподаватель</span>
-                        <p>Имеет многолетний опыт преподавания, разрабатывает учебные программы и помогает ученикам
-                            раскрыть их потенциал.</p>
-                    </div>
-                </div><!-- End Team Member -->
-
-                <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="300">
-                    <div class="member-img">
-                        <img src="{% static 'assets/img/team/team-3.jpg' %}" class="img-fluid" alt="">
-
-                    </div>
-                    <div class="member-info text-center">
-                        <h4>Сулайман уулу Каныбек</h4>
-                        <span>Преподаватель истории</span>
-                        <p>Погружает учеников в мир исторических событий, формирует аналитическое мышление и учит
-                            понимать причины и последствия мировых процессов.</p>
-                    </div>
-                </div><!-- End Team Member -->
-                <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="600">
-                    <div class="member-img">
-                        <img src="{% static 'assets/img/team/team-6.jpg' %}" class="img-fluid" alt="">
-
-                    </div>
-                    <div class="member-info text-center">
-                        <h4>Saparov Сулайман</h4>
-                        <span>Заведующий кафедрой</span>
-                        <p>Организует работу преподавателей, контролирует качество образовательных программ и внедряет
-                            новые методики обучения.</p>
-                    </div>
-                </div><!-- End Team Member -->
-                <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="400">
-                    <div class="member-img">
-                        <img src="{% static 'assets/img/team/team-4.jpg' %}" class="img-fluid" alt="">
-
-                    </div>
-                    <div class="member-info text-center">
-                        <h4>Умаралиев Адиль</h4>
-                        <span>Преподаватель математики</span>
-                        <p>Объясняет сложные математические концепции простым языком, помогает развивать логическое
-                            мышление и аналитические навыки.</p>
-                    </div>
-                </div><!-- End Team Member -->
-
-                <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="500">
-                    <div class="member-img">
-                        <img src="{% static 'assets/img/team/team-5.jpg' %}" class="img-fluid" alt="">
-
-                    </div>
-                    <div class="member-info text-center">
-                        <h4>Назарбаев Самат</h4>
-                        <span>Преподаватель информатики</span>
-                        <p>Обучает современным цифровым технологиям, программированию и алгоритмическому мышлению,
-                            готовит учеников к IT-специальностям.</p>
-                    </div>
-                </div><!-- End Team Member -->
-
-            </div>
-
+  <div class="container">
+    <div class="row gy-5">
+      {% for member in teachers %}
+      <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+        <div class="member-img">
+          <img src="{{ member.image.url }}" class="img-fluid" alt="{{ member.name }}">
         </div>
-
-    </section><!-- /Team Section -->
+        <div class="member-info text-center">
+          <h4>{{ member.name }}</h4>
+          <span>{{ member.position }}</span>
+          <p>{{ member.description }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+!-- /Team Section -->
 
     <!-- Call To Action Section -->
     <section id="call-to-action" class="call-to-action section dark-background">
@@ -512,64 +453,35 @@
         </div><!-- End Section Title -->
 
         <div class="container">
-
-            <div class="row gy-4">
-
-                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <article>
-
-                        <div class="post-img">
-                            <img src="{% static 'assets/img/blog/achievement.jpeg' %}" alt="" class="img-fluid">
-                        </div>
-
-                        <p class="post-category">Достижения</p>
-
-                        <h2 class="title">
-                            <a href="{% url 'blog-details' %}">Золотая победа на олимпиаде JEO!</a>
-                        </h2>
+  <div class="row gy-4">
+    {% for post in blogs %}
+      <div class="col-lg-4">
+        <article>
+          <div class="post-img">
+            {% with post.images.first as first_image %}
+              {% if first_image %}
+                <img src="{{ first_image.images.url }}" alt="{{ post.title }}" class="img-fluid">
+              {% else %}
+                <img src="{% static 'assets/img/kids.jpg' %}" alt="No image" class="img-fluid">
+              {% endif %}
+            {% endwith %}
+          </div>
 
 
-                    </article>
-                </div><!-- End post list item -->
 
-                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <article>
-
-                        <div class="post-img">
-                            <img src="{% static 'assets/img/blog/achievement-2.jpeg' %}" alt="" class="img-fluid">
-                        </div>
-
-                        <p class="post-category">Деятельности</p>
-
-                        <h2 class="title">
-                            <a href="{% url 'blog-details' %}">Конкурс по сбору макулатуры!</a>
-                        </h2>
-
-
-                    </article>
-                </div><!-- End post list item -->
-
-                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <article>
-
-                        <div class="post-img">
-                            <img src="{% static 'assets/img/blog/achievement-3.jpg' %}" alt="" class="img-fluid">
-                        </div>
-
-                        <p class="post-category">Достижения</p>
-
-                        <h2 class="title">
-                            <a href="{% url 'blog-details' %}">Candidate for Accreditation from Character.org!</a>
-                        </h2>
-
-
-                    </article>
-                </div><!-- End post list item -->
-
-            </div><!-- End recent posts list -->
-
-        </div>
-
+          <h2 class="title">
+            <a href="{% url 'blog-details'  post.id %}">{{ post.title }}</a>
+          </h2>
+        </article>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+            <div class="d-flex justify-content-center mt-4">
+                    <a href="{% url 'blog' %}" class="btn btn-get-started"
+                       style="background-color: #F39501; color: #ffffff; border-color: #F39501;">
+                        Подробнее
+                    </a>
     </section><!-- /Recent Posts Section -->
 
     <!-- Contact Section -->
@@ -611,7 +523,7 @@
                                 <i class="bi bi-envelope"></i>
                                 <h3>Электронная почта</h3>
                                 <p>info@seytek-stem.kg</p>
-                                <p>info@seytek-stem.kg</p>
+
 
                             </div>
                         </div><!-- End Info Item -->

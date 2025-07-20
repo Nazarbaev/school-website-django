@@ -30,79 +30,77 @@
     <section id="blog-posts" class="blog-posts section">
 
       <div class="container">
-        <div class="row gy-4">
+  <div class="row gy-4">
+    {% for post in page_obj %}
+      <div class="col-lg-4">
+        <article>
+          <div class="post-img">
+            {% with post.images.first as first_image %}
+              {% if first_image %}
+                <img src="{{ first_image.images.url }}" alt="{{ post.title }}" class="img-fluid">
+              {% else %}
+                <img src="{% static 'assets/img/kids.jpg' %}" alt="No image" class="img-fluid">
+              {% endif %}
+            {% endwith %}
+          </div>
 
-          <div class="col-lg-4">
-            <article>
 
-              <div class="post-img">
-                <img src="{% static 'assets/img/blog/achievement.jpeg' %}" alt="" class="img-fluid">
-              </div>
 
-              <p class="post-category">Достижения</p>
-
-              <h2 class="title">
-                <a href="{% url 'blog-details' %}">Золотая победа на олимпиаде JEO!</a>
-              </h2>
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="{% static 'assets/img/blog/achievement-2.jpeg' %}" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Деятельности</p>
-
-              <h2 class="title">
-                <a href="{% url 'blog-details' %}">Конкурс по сбору макулатуры!</a>
-              </h2>
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="{% static 'assets/img/blog/achievement-3.jpg' %}" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Достижения</p>
-
-              <h2 class="title">
-                <a href="{% url 'blog-details' %}">Candidate for Accreditation from Character.org!</a>
-              </h2>
-
-            </article>
-          </div><!-- End post list item -->
-        </div>
+          <h2 class="title">
+            <a href="{% url 'blog-details'  post.id %}">{{ post.title }}</a>
+          </h2>
+        </article>
       </div>
+    {% endfor %}
+  </div>
+</div>
+
 
     </section><!-- /Blog Posts Section -->
 
     <!-- Blog Pagination Section -->
     <section id="blog-pagination" class="blog-pagination section">
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <ul class="pagination">
 
-      <div class="container">
-        <div class="d-flex justify-content-center">
-          <ul>
-            <li><a href="#"><i class="bi bi-chevron-left"></i></a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#" class="active">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li>...</li>
-            <li><a href="#">10</a></li>
-            <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
-          </ul>
-        </div>
-      </div>
+        {% if page_obj.has_previous %}
+          <li>
+            <a href="?page={{ page_obj.previous_page_number }}">
+              <i class="bi bi-chevron-left"></i>
+            </a>
+          </li>
+        {% else %}
+          <li class="disabled"><span><i class="bi bi-chevron-left"></i></span></li>
+        {% endif %}
 
-    </section><!-- /Blog Pagination Section -->
+        {% for num in page_obj.paginator.page_range %}
+          {% if num == 1 or num == page_obj.paginator.num_pages or num >= page_obj.number|add:'-2' and num <= page_obj.number|add:'2' %}
+            {% if page_obj.number == num %}
+              <li><a href="#" class="active">{{ num }}</a></li>
+            {% else %}
+              <li><a href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+          {% elif num == page_obj.number|add:'-3' or num == page_obj.number|add:'3' %}
+            <li><span>...</span></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <li>
+            <a href="?page={{ page_obj.next_page_number }}">
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </li>
+        {% else %}
+          <li class="disabled"><span><i class="bi bi-chevron-right"></i></span></li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </div>
+</section>
+
 
   </main>
 {% endblock body %}

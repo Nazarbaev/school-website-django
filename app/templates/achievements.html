@@ -10,8 +10,8 @@
         <div class="container">
           <div class="row d-flex justify-content-center text-center">
             <div class="col-lg-8">
-              <h1>Достижения</h1>
-              <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+              <h1>Новости и события нашей школы</h1>
+              <p class="mb-0">Добро пожаловать в наш блог! Здесь мы делимся самыми свежими новостями, событиями и достижениями нашей школы. Будьте в курсе всего, что происходит в нашем учебном сообществе!</p>
             </div>
           </div>
         </div>
@@ -19,8 +19,8 @@
       <nav class="breadcrumbs">
         <div class="container">
           <ol>
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li class="current">Blog</li>
+            <li><a href="{% url 'index' %}">Главная</a></li>
+            <li class="current">Блог</li>
           </ol>
         </div>
       </nav>
@@ -30,136 +30,77 @@
     <section id="blog-posts" class="blog-posts section">
 
       <div class="container">
-        <div class="row gy-4">
+  <div class="row gy-4">
+    {% for post in page_obj %}
+      <div class="col-lg-4">
+        <article>
+          <div class="post-img">
+            {% with post.images.first as first_image %}
+              {% if first_image %}
+                <img src="{{ first_image.images.url }}" alt="{{ post.title }}" class="img-fluid">
+              {% else %}
+                <img src="{% static 'assets/img/kids.jpg' %}" alt="No image" class="img-fluid">
+              {% endif %}
+            {% endwith %}
+          </div>
 
-          <div class="col-lg-4">
-            <article>
 
-              <div class="post-img">
-                <img src="{% static 'assets/img/blog/blog-1.jpg' %}" alt="" class="img-fluid">
-              </div>
 
-              <p class="post-category">Politics</p>
-
-              <h2 class="title">
-                <a href="{% url 'achievements-details' %}">Dolorum optio tempore voluptas dignissimos</a>
-              </h2>
-
-              
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="{% static 'assets/img/blog/blog-2.jpg' %}" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Sports</p>
-
-              <h2 class="title">
-                <a href="{% url 'achievements-details' %}">Nisi magni odit consequatur autem nulla dolorem</a>
-              </h2>
-
-              
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="{% static 'assets/img/blog/blog-3.jpg' %}" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Entertainment</p>
-
-              <h2 class="title">
-                <a href="{% url 'achievements-details' %}">Possimus soluta ut id suscipit ea ut in quo quia et soluta</a>
-              </h2>
-
-              
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="{% static 'assets/img/blog/blog-4.jpg' %}" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Sports</p>
-
-              <h2 class="title">
-                <a href="{% url 'achievements-details' %}">Non rem rerum nam cum quo minus olor distincti</a>
-              </h2>
-
-              
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="{% static 'assets/img/blog/blog-5.jpg' %}" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Politics</p>
-
-              <h2 class="title">
-                <a href="{% url 'achievements-details' %}">Accusamus quaerat aliquam qui debitis facilis consequatur</a>
-              </h2>
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-lg-4">
-            <article>
-
-              <div class="post-img">
-                <img src="{% static 'assets/img/blog/blog-6.jpg' %}" alt="" class="img-fluid">
-              </div>
-
-              <p class="post-category">Entertainment</p>
-
-              <h2 class="title">
-                <a href="{% url 'achievements-details' %}">Distinctio provident quibusdam numquam aperiam aut</a>
-              </h2>
-
-              
-
-            </article>
-          </div><!-- End post list item -->
-
-        </div>
+          <h2 class="title">
+            <a href="{% url 'blog-details'  post.id %}">{{ post.title }}</a>
+          </h2>
+        </article>
       </div>
+    {% endfor %}
+  </div>
+</div>
+
 
     </section><!-- /Blog Posts Section -->
 
     <!-- Blog Pagination Section -->
     <section id="blog-pagination" class="blog-pagination section">
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <ul class="pagination">
 
-      <div class="container">
-        <div class="d-flex justify-content-center">
-          <ul>
-            <li><a href="#"><i class="bi bi-chevron-left"></i></a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#" class="active">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li>...</li>
-            <li><a href="#">10</a></li>
-            <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
-          </ul>
-        </div>
-      </div>
+        {% if page_obj.has_previous %}
+          <li>
+            <a href="?page={{ page_obj.previous_page_number }}">
+              <i class="bi bi-chevron-left"></i>
+            </a>
+          </li>
+        {% else %}
+          <li class="disabled"><span><i class="bi bi-chevron-left"></i></span></li>
+        {% endif %}
 
-    </section><!-- /Blog Pagination Section -->
+        {% for num in page_obj.paginator.page_range %}
+          {% if num == 1 or num == page_obj.paginator.num_pages or num >= page_obj.number|add:'-2' and num <= page_obj.number|add:'2' %}
+            {% if page_obj.number == num %}
+              <li><a href="#" class="active">{{ num }}</a></li>
+            {% else %}
+              <li><a href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+          {% elif num == page_obj.number|add:'-3' or num == page_obj.number|add:'3' %}
+            <li><span>...</span></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <li>
+            <a href="?page={{ page_obj.next_page_number }}">
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </li>
+        {% else %}
+          <li class="disabled"><span><i class="bi bi-chevron-right"></i></span></li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </div>
+</section>
+
 
   </main>
- {% endblock body %}
+{% endblock body %}

@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block body %}
+
 <main class="main">
 
     <!-- Page Title -->
@@ -30,39 +31,84 @@
     <!-- Portfolio Section -->
     <section id="gallery" class="portfolio section">
 
-
         <div class="container">
             <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
                 <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-                    <li data-filter="*" class="filter-active">Все</li>
+                    <li class="{% if not selected_category %}filter-active{% endif %}">
+                        <a href="{% url 'gallery' %}">Все</a>
+                    </li>
                     {% for category in categories %}
-                    <li data-filter=".filter-{{ category.id }}">{{ category.title }}</li>
+                    <li class="{% if category.title == selected_category %}filter-active{% endif %}">
+                        <a href="?category={{ category.title }}">{{ category.title }}</a>
+                    </li>
                     {% endfor %}
                 </ul><!-- End Portfolio Filters -->
 
                 <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-                    {% for gallery in gallery_images %}
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{{ gallery.category.name|lower }}">
-                        <img src="{{ gallery.image.url }}" class="img-fluid" alt="">
+                    {% for image in page_obj %}
+                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{{ image.gallery.category.title|lower }}">
+                        <img src="{{ image.image.url }}" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>{{ gallery.category }}</h4>
-
-                            <a href="{{ gallery.image.url }}" title="{{ gallery.category.name }}"
-                               data-gallery="portfolio-gallery-app"
-                               class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                            <h4>{{ image.gallery.category.title }}</h4>
+                            <a href="{{ image.image.url }}"
+                               data-gallery="portfolio-gallery-app" class="glightbox preview-link">
+                                <i class="bi bi-zoom-in"></i>
+                            </a>
                         </div>
-                    </div><!-- End Portfolio Item -->
+                    </div>
                     {% endfor %}
-
                 </div><!-- End Portfolio Container -->
-
             </div>
-
         </div>
+
+        <br>
+
+        <section id="blog-pagination" class="blog-pagination section">
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <ul>
+        {% if page_obj.has_previous %}
+          <li>
+            <a href="?page={{ page_obj.previous_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}">
+              <i class="bi bi-chevron-left"></i>
+            </a>
+          </li>
+        {% else %}
+          <li class="disabled">
+            <span><i class="bi bi-chevron-left"></i></span>
+          </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+            <li><a href="#" class="active">{{ num }}</a></li>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <li><a href="?page={{ num }}{% if selected_category %}&category={{ selected_category }}{% endif %}">{{ num }}</a></li>
+          {% elif num == 1 or num == page_obj.paginator.num_pages %}
+            <li><a href="?page={{ num }}{% if selected_category %}&category={{ selected_category }}{% endif %}">{{ num }}</a></li>
+          {% elif num == page_obj.number|add:'-3' or num == page_obj.number|add:'3' %}
+            <li><span>...</span></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <li>
+            <a href="?page={{ page_obj.next_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}">
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </li>
+        {% else %}
+          <li class="disabled">
+            <span><i class="bi bi-chevron-right"></i></span>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</section>
+
 
     </section><!-- /Portfolio Section -->
 
-
 </main>
 {% endblock body %}
-

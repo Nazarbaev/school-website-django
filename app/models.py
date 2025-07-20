@@ -33,7 +33,7 @@ class GalleryCategory(models.Model):
 
 
 class Gallery(models.Model):
-    image = models.ImageField(upload_to='images/')
+
     category = models.ForeignKey(GalleryCategory, on_delete=models.CASCADE, related_name='gallery')
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
@@ -46,12 +46,16 @@ class Gallery(models.Model):
         return f"Image {self.id}"
 
 
+class GalleryImage(models.Model):
+    gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='images/')
+
 class Stats(models.Model):
     number_of_teachers = models.PositiveIntegerField()
     number_of_clubs = models.PositiveIntegerField()
     number_of_students = models.PositiveIntegerField()
     number_of_workers = models.PositiveIntegerField()
-    background_image = models.ImageField()
+
 
     class Meta:
         verbose_name = "Статистика"
@@ -63,6 +67,8 @@ class TeamMember(models.Model):
     position = models.CharField(max_length=255)
     description = models.TextField()
     image = models.ImageField()
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = "Команда"
@@ -85,9 +91,8 @@ class BlogCategory(models.Model):
 class BlogPost(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
-    description = models.TextField()
     category = models.ForeignKey(BlogCategory, on_delete=models.SET_NULL, null=True, blank=True, related_name='posts')
-    image = models.ImageField(upload_to='images/')
+
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
     # project_url = models.TextField()
@@ -100,24 +105,19 @@ class BlogPost(models.Model):
         verbose_name_plural = "Новости"
 
 
+class BlogImages(models.Model):
+    blog = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='images')
+    images = models.ImageField(upload_to='images/')
+
+class FAQ(models.Model):
+    question = models.TextField(max_length=255)
+    answer = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Часто задаваемые вопросы"
+        verbose_name_plural = "Часто задаваемые вопросы"
 
 
-# class FAQ(models.Model):
-#     question = models.TextField(max_length=255)
-#     answer = models.TextField()
-#
-#     class Meta:
-#         verbose_name = "Часто задаваемые вопросы"
-#         verbose_name_plural = "Часто задаваемые вопросы"
 
-
-# class Contact(models.Model):
-#     phone = models.CharField(max_length=20)
-#     email = models.EmailField()
-#     address = models.TextField()
-#     open_days = models.CharField(max_length=255)
-#     open_hours = models.CharField(max_length=255)
-#
-#     class Meta:
-#         verbose_name = "Контакт"
-#         verbose_name_plural = "Контакты"
