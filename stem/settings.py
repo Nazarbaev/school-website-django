@@ -24,7 +24,8 @@ SECRET_KEY = 'django-insecure-y!df_(#331h-z*j#8dik+di#wc+u&rr_-0(j5l$un=9xe7m5&p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://www.ambassador.edu.kg',
+    'https://ambassador.edu.kg',]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://www.ambassador.edu.kg',
