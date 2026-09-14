@@ -26,6 +26,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://www.ambassador.edu.kg',
+    'https://ambassador.edu.kg',
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -129,7 +134,12 @@ import dj_database_url
 
 if 'RENDER' in os.environ:
     DEBUG = False
-    ALLOWED_HOSTS = [os.environ.get('RENDER_EXTERNAL_HOSTNAME')]
+    ALLOWED_HOSTS = [
+        os.environ.get('RENDER_EXTERNAL_HOSTNAME'),
+        'www.ambassador.edu.kg',
+        'ambassador.edu.kg',
+    ]
+
     DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
     MIDDLEWARE.insert(
         MIDDLEWARE.index('django.middleware.security.SecurityMiddleware') + 1,
